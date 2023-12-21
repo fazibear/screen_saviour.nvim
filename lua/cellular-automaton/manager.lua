@@ -26,20 +26,17 @@ local function process_frame(grid, animation_config, win_id)
 end
 
 local function setup_cleaning(win_id, buffers)
-  local exit_keys = { "q", "Q", "<ESC>", "<CR>" }
-  for _, key in ipairs(exit_keys) do
-    for _, buffer_id in ipairs(buffers) do
-      for _, mode in ipairs({ "n", "i" }) do
-        vim.api.nvim_buf_set_keymap(
-          buffer_id,
-          mode,
-          key,
-          "<Cmd>lua require('cellular-automaton.manager').clean()<CR>",
-          { silent = true }
-        )
-      end
+  vim.api.nvim_create_autocmd("User", {
+    pattern = "KeyPressed",
+    callback = function()
+      M.clean()
     end
-  end
+  })
+  vim.api.nvim_create_autocmd("WinClosed", {
+    group = vim.api.nvim_create_augroup("CellularAutomoton", { clear = true }),
+    pattern = tostring(win_id),
+    callback = M.clean,
+  })
   vim.api.nvim_create_autocmd("WinClosed", {
     group = vim.api.nvim_create_augroup("CellularAutomoton", { clear = true }),
     pattern = tostring(win_id),

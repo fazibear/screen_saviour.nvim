@@ -15,28 +15,40 @@ local get_buffer = (function()
   end
 end)()
 
+local get_row_count = function()
+  if vim.o.showtabline > 0 then
+    return 1
+  else
+    return 0
+  end
+end
+
+local get_col_count = function()
+  return 0
+end
+
 M.open_window = function(host_window)
   buffers = {
     vim.api.nvim_create_buf(false, true),
     vim.api.nvim_create_buf(false, true),
   }
   local buffnr = get_buffer()
-  local row
-  if vim.o.showtabline > 0 then
-    row = 1
-  else
-    row = 0
-  end
   window_id = vim.api.nvim_open_win(buffnr, true, {
     relative = "editor",
     width = vim.api.nvim_win_get_width(host_window),
     height = vim.api.nvim_win_get_height(host_window),
     border = "none",
-    row = row,
-    col = 0,
+    row = get_row_count(),
+    col = get_col_count(),
   })
   vim.api.nvim_win_set_option(window_id, "winhl", "Normal:CellularAutomatonNormal")
   vim.api.nvim_win_set_option(window_id, "list", false)
+  vim.on_key(function()
+    if window_id and vim.api.nvim_win_is_valid(window_id) then
+      vim.api.nvim_exec_autocmds("User", { pattern = "KeyPressed" })
+    end
+  end, namespace)
+
   return window_id, buffers
 end
 
