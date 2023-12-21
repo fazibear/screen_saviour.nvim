@@ -89,7 +89,7 @@ M.on_key = function()
   if window_id and vim.api.nvim_win_is_valid(window_id) then
     vim.schedule(function()
       vim.api.nvim_exec_autocmds("User", { pattern = "KeyPressed" })
-    end)
+    end, namespace)
   end
 end
 

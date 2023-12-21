@@ -17,7 +17,7 @@ vim.g.loaded_cellular_automaton = 1
 vim.api.nvim_set_hl(0, "CellularAutomatonNormal", { default = true, link = "Normal" })
 
 vim.api.nvim_create_user_command("CellularAutomaton", function(opts)
-  require("cellular-automaton").start(opts.fargs[1])
+  require("cellular-automaton.animation").start(opts.fargs[1])
 end, {
   nargs = "?",
   complete = function(_, line)
