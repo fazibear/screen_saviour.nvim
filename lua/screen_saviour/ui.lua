@@ -86,9 +86,11 @@ M.clean = function()
 end
 
 M.on_key = function()
-  if window_id and vim.api.nvim_win_is_valid(window_id) then
+  if window_id then
     vim.schedule(function()
-      vim.api.nvim_win_close(window_id, true)
+      if window_id then
+        vim.api.nvim_win_close(window_id, true)
+      end
     end)
   end
 end
