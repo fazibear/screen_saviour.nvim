@@ -10,7 +10,9 @@ M.update = function(grid, word_update)
     local word = {}
     for j = 1, #grid[i] do
       local c = grid[i][j]
-      if not is_alphanumeric(c.char) then
+      if is_alphanumeric(c.char) then
+        table.insert(word, c)
+      else
         if #word ~= 0 then
           for _, d in pairs(word_update(word)) do
             table.insert(scrambled, d)
@@ -18,8 +20,6 @@ M.update = function(grid, word_update)
           word = {}
         end
         table.insert(scrambled, c)
-      else
-        table.insert(word, c)
       end
     end
 

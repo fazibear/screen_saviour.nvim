@@ -20,16 +20,20 @@ M.setup = function(opts)
 
       timer = vim.loop.new_timer()
       timer:start(opts.after * 1000, 0, vim.schedule_wrap(function()
-        if timer:is_active() then timer:stop() end
-        vim.schedule(function()
-          vim.api.nvim_exec_autocmds("User", { pattern = "Idle" })
-        end)
+        if timer:is_active() then
+          timer:stop()
+        end
+        vim.api.nvim_exec_autocmds("User", { pattern = "Idle" })
       end))
 
       vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
         callback = function()
-          if timer:is_active() then timer:stop() end
-          if not timer:is_closing() then timer:close() end
+          if timer:is_active() then
+            timer:stop()
+          end
+          if not timer:is_closing() then
+            timer:close()
+          end
         end,
         once = true
       })

@@ -10,12 +10,12 @@ local get_dominant_hl_group = function(buffer, i, j)
       return "@" .. captures[c].capture
     end
   end
-  return ""
+  return "@text"
 end
 
 M.load_base_grid = function(window, buffer)
   local window_info = vim.fn.getwininfo(window)[1]
-  local window_width = window_info.width - window_info.textoff 
+  local window_width = window_info.width - window_info.textoff
   local vertical_range = {
     start = vim.fn.line("w0") - 1,
     end_ = vim.fn.line("w$"),

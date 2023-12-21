@@ -2,7 +2,7 @@ local M = {}
 
 local manager = require("screen_saviour.manager")
 
-M.animations = {
+M.all = {
   make_it_rain = require("screen_saviour.animations.make_it_rain"),
   game_of_life = require("screen_saviour.animations.game_of_life"),
   word_scramble = require("screen_saviour.animations.word_scramble"),
@@ -12,10 +12,10 @@ M.animations = {
 
 local get_random_animation = function()
   local keyset = {}
-  for k in pairs(M.animations) do
+  for k in pairs(M.all) do
     table.insert(keyset, k)
   end
-  return M.animations[keyset[math.random(#keyset)]]
+  return M.all[keyset[math.random(#keyset)]]
 end
 
 local apply_default_options = function(config)
@@ -43,11 +43,11 @@ M.register = function(config)
     return
   end
 
-  M.animations[config.name] = apply_default_options(config)
+  M.all[config.name] = apply_default_options(config)
 end
 
 M.start = function(animation_name)
-  local animation = animation_name and M.animations[animation_name] or get_random_animation()
+  local animation = animation_name and M.all[animation_name] or get_random_animation()
   -- Make sure animaiton exists
   if animation == nil then
     error("Error while starting an animation. Unknown screen_saviour animation: " .. animation_name)

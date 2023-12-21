@@ -21,7 +21,7 @@ vim.api.nvim_create_user_command("ScreenSaviour", function(opts)
 end, {
   nargs = "?",
   complete = function(_, line)
-    local animation_list = vim.tbl_keys(require("screen_saviour").animations)
+    local animation_list = vim.tbl_keys(require("screen_saviour.animation").all)
     local l = vim.split(line, "%s+", {})
 
     if #l == 2 then
