@@ -22,13 +22,13 @@ local apply_default_options = function(config)
 end
 
 local get_random_animation = function()
-￼  local keyset = {}
-￼  for k in pairs(M.animations) do
-￼    table.insert(keyset, k)
-￼  end
-￼  return M.animations[keyset[math.random(#keyset)]]
-￼end
-￼
+  local keyset = {}
+  for k in pairs(M.animations) do
+    table.insert(keyset, k)
+  end
+  return M.animations[keyset[math.random(#keyset)]]
+end
+
 M.register_animation = function(config)
   -- "module" should implement update_grid(grid) method which takes 2D "grid"
   -- table of cells and updates it in place. Each "cell" is a table with following
@@ -47,7 +47,7 @@ end
 
 M.start_animation = function(animation_name)
   local animation = animation_name and M.animations[animation_name] or get_random_animation()
-    -- Make sure animaiton exists
+  -- Make sure animaiton exists
   if animation == nil then
     error("Error while starting an animation. Unknown cellular-automaton animation: " .. animation_name)
   end
