@@ -43,11 +43,6 @@ M.open_window = function(host_window)
   })
   vim.api.nvim_win_set_option(window_id, "winhl", "Normal:CellularAutomatonNormal")
   vim.api.nvim_win_set_option(window_id, "list", false)
-  vim.on_key(function()
-    if window_id and vim.api.nvim_win_is_valid(window_id) then
-      vim.api.nvim_exec_autocmds("User", { pattern = "KeyPressed" })
-    end
-  end, namespace)
 
   return window_id, buffers
 end
@@ -88,6 +83,14 @@ M.clean = function()
   end
   window_id = nil
   buffers = nil
+end
+
+M.on_key = function()
+  if window_id and vim.api.nvim_win_is_valid(window_id) then
+    vim.schedule(function()
+      vim.api.nvim_exec_autocmds("User", { pattern = "KeyPressed" })
+    end)
+  end
 end
 
 return M

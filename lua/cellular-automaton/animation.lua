@@ -8,6 +8,14 @@ M.animations = {
   scramble = require("cellular-automaton.animations.scramble"),
 }
 
+local get_random_animation = function()
+  local keyset = {}
+  for k in pairs(M.animations) do
+    table.insert(keyset, k)
+  end
+  return M.animations[keyset[math.random(#keyset)]]
+end
+
 local apply_default_options = function(config)
   local default = {
     name = "",
@@ -20,16 +28,7 @@ local apply_default_options = function(config)
   end
   return default
 end
-
-local get_random_animation = function()
-  local keyset = {}
-  for k in pairs(M.animations) do
-    table.insert(keyset, k)
-  end
-  return M.animations[keyset[math.random(#keyset)]]
-end
-
-M.register_animation = function(config)
+M.register = function(config)
   -- "module" should implement update_grid(grid) method which takes 2D "grid"
   -- table of cells and updates it in place. Each "cell" is a table with following
   -- fields {"hl_group", "char"}
@@ -45,7 +44,7 @@ M.register_animation = function(config)
   M.animations[config.name] = apply_default_options(config)
 end
 
-M.start_animation = function(animation_name)
+M.start = function(animation_name)
   local animation = animation_name and M.animations[animation_name] or get_random_animation()
   -- Make sure animaiton exists
   if animation == nil then
