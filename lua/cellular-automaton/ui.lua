@@ -21,12 +21,18 @@ M.open_window = function(host_window)
     vim.api.nvim_create_buf(false, true),
   }
   local buffnr = get_buffer()
+  local row
+  if vim.o.showtabline > 0 then
+    row = 1
+  else
+    row = 0
+  end
   window_id = vim.api.nvim_open_win(buffnr, true, {
     relative = "editor",
     width = vim.api.nvim_win_get_width(host_window),
     height = vim.api.nvim_win_get_height(host_window),
     border = "none",
-    row = 0,
+    row = row,
     col = 0,
   })
   vim.api.nvim_win_set_option(window_id, "winhl", "Normal:CellularAutomatonNormal")
