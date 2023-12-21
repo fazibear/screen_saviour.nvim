@@ -10,56 +10,9 @@ local get_dominant_hl_group = function(buffer, i, j)
   return ""
 end
 
-local get_usable_window_width = function()
-  -- getting number of visible columns in vim is PITA
-  -- below vimscript function was taken from
-  -- https://stackoverflow.com/questions/26315925/get-usable-window-width-in-vim-script
-  local window_width = vim.api.nvim_exec(
-    [[
-      function! BufferWidth()
-        let width = winwidth(0)
-        let numberwidth = max([&numberwidth, strlen(line('$')) + 1])
-        let numwidth = (&number || &relativenumber) ? numberwidth : 0
-        let foldwidth = &foldcolumn
-
-        if &signcolumn == 'yes'
-          let signwidth = 2
-        elseif &signcolumn =~ 'yes'
-          let signwidth = &signcolumn
-          let signwidth = split(signwidth, ':')[1]
-          let signwidth *= 2  " each signcolumn is 2-char wide
-        elseif &signcolumn == 'auto'
-          let supports_sign_groups = has('nvim-0.4.2') || has('patch-8.1.614')
-          let signlist = execute(printf('sign place ' . (supports_sign_groups ? 'group=* ' : '')
-              \. 'buffer=%d', bufnr('')))
-          let signlist = split(signlist, "\n")
-          let signwidth = len(signlist) > 2 ? 2 : 0
-        elseif &signcolumn =~ 'auto'
-          let signwidth = 0
-          if len(sign_getplaced(bufnr(),{'group':'*'})[0].signs)
-            let signwidth = 0
-            for l:sign in sign_getplaced(bufnr(),{'group':'*'})[0].signs
-              let lnum = l:sign.lnum
-              let signs = len(sign_getplaced(bufnr(),{'group':'*', 'lnum':lnum})[0].signs)
-              let signwidth = (signs > signwidth ? signs : signwidth)
-            endfor
-          endif
-          let signwidth *= 2   " each signcolumn is 2-char wide
-        else
-          let signwidth = 0
-        endif
-
-        return width - numwidth - foldwidth - signwidth
-      endfunction
-      echo BufferWidth()
-    ]],
-    true
-  )
-  return window_width
-end
-
 M.load_base_grid = function(window, buffer)
-  local window_width = get_usable_window_width()
+  local window_info = vim.fn.getwininfo(window)[1]
+  local window_width = window_info.width - window_info.textoff 
   local vertical_range = {
     start = vim.fn.line("w0") - 1,
     end_ = vim.fn.line("w$"),

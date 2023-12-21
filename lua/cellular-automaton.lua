@@ -1,7 +1,7 @@
 local M = {}
 local timer
 local default_opts = {
-  after = 30,
+  after = 60,
   exclude_filetypes = {},
   exclude_buftypes = {},
 }
