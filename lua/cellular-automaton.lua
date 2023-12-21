@@ -15,7 +15,6 @@ M.setup = function(opts)
 
   vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
     callback = function()
-      vim.notify("HOLD", vim.log.levels.INFO)
       if vim.tbl_contains(opts.exclude_filetypes, vim.bo.ft) then return end
       if vim.tbl_contains(opts.exclude_buftypes, vim.bo.bt) then return end
 
