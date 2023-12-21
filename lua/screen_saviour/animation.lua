@@ -1,13 +1,13 @@
 local M = {}
 
-local manager = require("cellular-automaton.manager")
+local manager = require("screen_saviour.manager")
 
 M.animations = {
-  make_it_rain = require("cellular-automaton.animations.make_it_rain"),
-  game_of_life = require("cellular-automaton.animations.game_of_life"),
-  word_scramble = require("cellular-automaton.animations.word_scramble"),
-  word_shift_left = require("cellular-automaton.animations.word_shift_left"),
-  word_shift_right = require("cellular-automaton.animations.word_shift_right"),
+  make_it_rain = require("screen_saviour.animations.make_it_rain"),
+  game_of_life = require("screen_saviour.animations.game_of_life"),
+  word_scramble = require("screen_saviour.animations.word_scramble"),
+  word_shift_left = require("screen_saviour.animations.word_shift_left"),
+  word_shift_right = require("screen_saviour.animations.word_shift_right"),
 }
 
 local get_random_animation = function()
@@ -50,7 +50,7 @@ M.start = function(animation_name)
   local animation = animation_name and M.animations[animation_name] or get_random_animation()
   -- Make sure animaiton exists
   if animation == nil then
-    error("Error while starting an animation. Unknown cellular-automaton animation: " .. animation_name)
+    error("Error while starting an animation. Unknown screen_saviour animation: " .. animation_name)
   end
 
   -- Make sure nvim treesitter parser exists for current buffer

@@ -1,5 +1,5 @@
 local assert = require("luassert")
-local l = require("cellular-automaton.load")
+local l = require("screen_saviour.load")
 local mock = require("luassert.mock")
 
 local function setup_viewport(win_height, win_width, lines, ver_scroll, hor_scroll, win_options)

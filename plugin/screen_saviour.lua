@@ -9,19 +9,19 @@ if not ok then
   return
 end
 
-if vim.g.loaded_cellular_automaton == 1 then
+if vim.g.loaded_screen_saviour == 1 then
   return
 end
-vim.g.loaded_cellular_automaton = 1
+vim.g.loaded_screen_saviour = 1
 
-vim.api.nvim_set_hl(0, "CellularAutomatonNormal", { default = true, link = "Normal" })
+vim.api.nvim_set_hl(0, "ScreenSaviourNormal", { default = true, link = "Normal" })
 
-vim.api.nvim_create_user_command("CellularAutomaton", function(opts)
-  require("cellular-automaton.animation").start(opts.fargs[1])
+vim.api.nvim_create_user_command("ScreenSaviour", function(opts)
+  require("screen_saviour.animation").start(opts.fargs[1])
 end, {
   nargs = "?",
   complete = function(_, line)
-    local animation_list = vim.tbl_keys(require("cellular-automaton").animations)
+    local animation_list = vim.tbl_keys(require("screen_saviour").animations)
     local l = vim.split(line, "%s+", {})
 
     if #l == 2 then

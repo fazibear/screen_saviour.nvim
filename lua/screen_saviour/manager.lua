@@ -1,7 +1,7 @@
 local M = {}
 
-local ui = require("cellular-automaton.ui")
-local common = require("cellular-automaton.common")
+local ui = require("screen_saviour.ui")
+local common = require("screen_saviour.common")
 local animation_in_progress = false
 
 local function process_frame(grid, animation_config, win_id)
@@ -41,7 +41,7 @@ M.execute_animation = function(animation_config)
   animation_in_progress = true
   local host_win_id = vim.api.nvim_get_current_win()
   local host_bufnr = vim.api.nvim_get_current_buf()
-  local grid = require("cellular-automaton.load").load_base_grid(host_win_id, host_bufnr)
+  local grid = require("screen_saviour.load").load_base_grid(host_win_id, host_bufnr)
   if animation_config.init ~= nil then
     animation_config.init(grid)
   end

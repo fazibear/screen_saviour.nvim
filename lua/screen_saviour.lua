@@ -5,8 +5,8 @@ local default_opts = {
   exclude_filetypes = {'nofile'},
   exclude_buftypes = {},
 }
-local animation = require("cellular-automaton.animation")
-local ui = require("cellular-automaton.ui")
+local animation = require("screen_saviour.animation")
+local ui = require("screen_saviour.ui")
 
 M.setup = function(opts)
   opts = vim.tbl_deep_extend("force", default_opts, opts or {})

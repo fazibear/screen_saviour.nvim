@@ -1,4 +1,4 @@
-# cellular-automaton.nvim
+# screen_saviour.nvim
 A useless plugin that might help you cope with stubbornly broken tests or overall lack of sense in life. It lets you execute aesthetically pleasing, cellular automaton animations based on the content of neovim buffer.
 
 https://user-images.githubusercontent.com/37074839/204104990-6ebd7767-92e9-43b9-878a-3493a08a3308.mov
@@ -24,25 +24,25 @@ There is no pragmatic use case whatsoever. However, there are some pseudo-scient
 
 ## Installation
 ```
-use 'eandrju/cellular-automaton.nvim' 
+use 'eandrju/screen_saviour.nvim' 
 ```
 
 ## Usage
 You can trigger it using simple command to run a random registered animation:
 ``` 
-:CellularAutomaton
+:ScreenSaviour
 ```
 or specifying the animation name like:
 ```
-:CellularAutomaton make_it_rain
+:ScreenSaviour make_it_rain
 ```
 or
 ```
-:CellularAutomaton game_of_life
+:ScreenSaviour game_of_life
 ```
 Or just create a mapping:
 ```lua
-vim.keymap.set("n", "<leader>fml", "<cmd>CellularAutomaton make_it_rain<CR>")
+vim.keymap.set("n", "<leader>fml", "<cmd>ScreenSaviour make_it_rain<CR>")
 ```
 You can close animation window with one of: `q`/`<Esc>`/`<CR>`
 
@@ -87,7 +87,7 @@ config.update = function (grid)
     return true
 end
 
-require("cellular-automaton").register_animation(config)
+require("screen_saviour").register_animation(config)
 ```
 Result:
 

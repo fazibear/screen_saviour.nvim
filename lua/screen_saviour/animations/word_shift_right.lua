@@ -1,4 +1,4 @@
-word_update = require("cellular-automaton.animations.word").update
+word_update = require("screen_saviour.animations.word").update
 
 local M = {
   fps = 15,

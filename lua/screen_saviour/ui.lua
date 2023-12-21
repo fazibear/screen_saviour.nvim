@@ -2,7 +2,7 @@ local M = {}
 
 local window_id = nil
 local buffers = nil
-local namespace = vim.api.nvim_create_namespace("cellular-automaton")
+local namespace = vim.api.nvim_create_namespace("screen_saviour")
 
 -- Each frame is rendered in different buffer to avoid flickering
 -- caused by lack of higliths right after setting the buffer data.
@@ -41,7 +41,7 @@ M.open_window = function(host_window)
     row = get_row_count(),
     col = get_col_count(),
   })
-  vim.api.nvim_win_set_option(window_id, "winhl", "Normal:CellularAutomatonNormal")
+  vim.api.nvim_win_set_option(window_id, "winhl", "Normal:ScreenSaviourNormal")
   vim.api.nvim_win_set_option(window_id, "list", false)
 
   return window_id, buffers
