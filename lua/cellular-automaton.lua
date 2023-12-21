@@ -2,7 +2,7 @@ local M = {}
 local timer
 local default_opts = {
   after = 60,
-  exclude_filetypes = {},
+  exclude_filetypes = {'nofile'},
   exclude_buftypes = {},
 }
 local animation = require("cellular-automaton.animation")

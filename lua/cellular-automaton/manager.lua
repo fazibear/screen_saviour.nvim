@@ -33,9 +33,10 @@ local function setup_cleaning(win_id, _buffers)
   })
 end
 
-local function _execute_animation(animation_config)
+M.execute_animation = function(animation_config)
   if animation_in_progress then
-    error("Nested animations are forbidden")
+    M.clean()
+    return 
   end
   animation_in_progress = true
   local host_win_id = vim.api.nvim_get_current_win()
@@ -47,14 +48,6 @@ local function _execute_animation(animation_config)
   local win_id, buffers = ui.open_window(host_win_id)
   process_frame(grid, animation_config, win_id)
   setup_cleaning(win_id, buffers)
-end
-
-M.execute_animation = function(animation_config)
-  local ok, err = pcall(_execute_animation, animation_config)
-  if not ok then
-    M.clean()
-    error(err)
-  end
 end
 
 M.clean = function()

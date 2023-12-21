@@ -54,10 +54,10 @@ M.start = function(animation_name)
   end
 
   -- Make sure nvim treesitter parser exists for current buffer
-  if not require("nvim-treesitter.parsers").has_parser() then
-    vim.notify("Error while starting an animation. Current buffer doesn't have associated nvim-treesitter parser.", vim.log.levels.INFO)
-    return
-  end
+  -- if not require("nvim-treesitter.parsers").has_parser() then
+  --   vim.notify("Error while starting an animation. Current buffer doesn't have associated nvim-treesitter parser.", vim.log.levels.INFO)
+  --   return
+  -- end
 
   manager.execute_animation(animation)
 end
