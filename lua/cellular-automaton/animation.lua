@@ -5,7 +5,9 @@ local manager = require("cellular-automaton.manager")
 M.animations = {
   make_it_rain = require("cellular-automaton.animations.make_it_rain"),
   game_of_life = require("cellular-automaton.animations.game_of_life"),
-  scramble = require("cellular-automaton.animations.scramble"),
+  word_scramble = require("cellular-automaton.animations.word_scramble"),
+  word_shift_left = require("cellular-automaton.animations.word_shift_left"),
+  word_shift_right = require("cellular-automaton.animations.word_shift_right"),
 }
 
 local get_random_animation = function()

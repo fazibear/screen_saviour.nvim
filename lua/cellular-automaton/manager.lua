@@ -26,10 +26,6 @@ local function process_frame(grid, animation_config, win_id)
 end
 
 local function setup_cleaning(win_id, _buffers)
-  vim.api.nvim_create_autocmd("User", {
-    pattern = "KeyPressed",
-    callback = M.clean,
-  })
   vim.api.nvim_create_autocmd("WinClosed", {
     group = vim.api.nvim_create_augroup("CellularAutomoton", { clear = true }),
     pattern = tostring(win_id),
