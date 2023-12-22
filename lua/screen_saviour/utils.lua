@@ -1,11 +1,11 @@
 M = {}
 
 M.get_char = function(grid, i, j)
-  local c = grid[i][j] 
+  local c = grid[i][j]
   if c then
     return c.char
   else
-    return " "
+    return ""
   end
 end
 
@@ -34,11 +34,11 @@ M.is_space = function(grid, i, j)
 end
 
 M.is_not_space = function(grid, i, j)
-  return M.get_char(grid, i, j) ~= " " and M.get_char(grid, i, j) ~= "\t"
+  return not M.is_space(grid, i, j)
 end
 
-M.is_line = function(grid, i, j)
-  return M.get_char(grid, i, j) ~= " " and M.get_char(grid, i, j+1) ~= " "
+M.whole_line = function(grid, i, j)
+  return not (M.is_space(grid, i, j) and (M.is_space(grid, i, j-1) or M.is_space(grid, i, j+1)))
 end
 --
 -- M.is_line = function(char, next_char, current_char_index, max_char_index)
