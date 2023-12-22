@@ -1,11 +1,11 @@
 if 1 ~= vim.fn.has("nvim-0.8.0") then
-  vim.api.nvim_err_writeln("Cellular-automaton.nvim requires at least nvim-0.8.0")
+  vim.api.nvim_err_writeln("screen_saviour.nvim requires at least nvim-0.8.0")
   return
 end
 
 local ok, _ = pcall(require, "nvim-treesitter")
 if not ok then
-  vim.api.nvim_err_writeln("Cellular-automaton.nvim requires nvim-treesitter/nvim-treesitter plugin to be installed.")
+  vim.api.nvim_err_writeln("screen_saviour.nvim requires nvim-treesitter/nvim-treesitter plugin to be installed.")
   return
 end
 
