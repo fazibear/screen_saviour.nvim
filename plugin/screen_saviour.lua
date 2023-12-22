@@ -17,7 +17,7 @@ vim.g.loaded_screen_saviour = 1
 vim.api.nvim_set_hl(0, "ScreenSaviourNormal", { default = true, link = "Normal" })
 
 vim.api.nvim_create_user_command("ScreenSaviour", function(opts)
-  require("screen_saviour.animation").start(opts.fargs[1])
+  require("screen_saviour.manager").start(opts.fargs[1])
 end, {
   nargs = "?",
   complete = function(_, line)

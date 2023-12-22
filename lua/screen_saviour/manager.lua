@@ -1,11 +1,12 @@
 local M = {}
 
-local ui = require("screen_saviour.ui")
 local common = require("screen_saviour.common")
+local ui = require("screen_saviour.ui")
+local animation = require("screen_saviour.animation")
+
 local animation_in_progress = false
 
 local function process_frame(grid, animation_config, win_id)
-  -- quit if animation already interrupted
   if win_id == nil or not vim.api.nvim_win_is_valid(win_id) then
     return
   end
@@ -33,21 +34,35 @@ local function setup_cleaning(win_id, _buffers)
   })
 end
 
-M.execute_animation = function(animation_config)
+M.start = function(animation_name)
   if animation_in_progress then
     M.clean()
     return 
   end
+ 
   animation_in_progress = true
+  
+  local animation = animation.get_by_name(animation_name)
   local host_win_id = vim.api.nvim_get_current_win()
   local host_bufnr = vim.api.nvim_get_current_buf()
   local grid = require("screen_saviour.load").load_base_grid(host_win_id, host_bufnr)
-  if animation_config.init ~= nil then
-    animation_config.init(grid)
+  if animation.init ~= nil then
+    animation.init(grid)
   end
   local win_id, buffers = ui.open_window(host_win_id)
-  process_frame(grid, animation_config, win_id)
+  process_frame(grid, animation, win_id)
   setup_cleaning(win_id, buffers)
+end
+
+M.init = function()
+  vim.api.nvim_create_autocmd("User", {
+    pattern = "Idle",
+    callback = M.start
+  })
+  vim.api.nvim_create_autocmd("User", {
+    pattern = "KeyPressed",
+    callback = M.clean
+  })
 end
 
 M.clean = function()

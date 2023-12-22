@@ -89,14 +89,18 @@ M.clean = function()
   buffers = nil
 end
 
-M.on_key = function()
-  if window_valid(window_id) then
-    vim.schedule(function()
+M.init = function()
+  vim.on_key(vim.schedule_wrap(function()
+    vim.api.nvim_exec_autocmds("User", { pattern = "KeyPressed" })
+  end))
+  vim.api.nvim_create_autocmd("User", {
+    pattern = "KeyPressed",
+    callback = function()
       if window_valid(window_id) then
         vim.api.nvim_win_close(window_id, true)
       end
-    end)
-  end
+    end,
+  })
 end
 
 return M
