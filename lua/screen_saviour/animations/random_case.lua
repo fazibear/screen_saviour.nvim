@@ -7,7 +7,7 @@ local M = {
 
 local change_char_case = function(char)
   local new_char = char
-  if utils.is_upper(char.char) then
+  if char.char >= "A" and char.char <= "Z" then
     new_char.char = string.lower(char.char)
   else
     new_char.char = string.upper(char.char)

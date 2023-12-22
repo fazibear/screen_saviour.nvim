@@ -16,7 +16,7 @@ local scramble = function(word)
 end
 
 M.update = function(grid)
-  return utils.update_each(utils.is_letter, grid, scramble)
+  return utils.update_each(utils.is_not_space, grid, scramble)
 end
 
 return M
