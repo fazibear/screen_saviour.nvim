@@ -27,6 +27,10 @@ local get_col_count = function()
   return 0
 end
 
+local window_valid = function()
+  return window_id and vim.api.nvim_win_is_valid(window_id)
+end
+
 M.open_window = function(host_window)
   buffers = {
     vim.api.nvim_create_buf(false, true),
@@ -49,7 +53,7 @@ end
 
 M.render_frame = function(grid)
   -- quit if animation already interrupted
-  if window_id == nil or not vim.api.nvim_win_is_valid(window_id) then
+  if not window_valid(window_id) then
     return
   end
   local buffnr = get_buffer()
@@ -86,9 +90,9 @@ M.clean = function()
 end
 
 M.on_key = function()
-  if window_id then
+  if window_valid(window_id) then
     vim.schedule(function()
-      if window_id then
+      if window_valid(window_id) then
         vim.api.nvim_win_close(window_id, true)
       end
     end)

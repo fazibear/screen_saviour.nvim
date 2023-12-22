@@ -5,9 +5,10 @@ local manager = require("screen_saviour.manager")
 M.all = {
   make_it_rain = require("screen_saviour.animations.make_it_rain"),
   game_of_life = require("screen_saviour.animations.game_of_life"),
-  word_scramble = require("screen_saviour.animations.word_scramble"),
-  word_shift_left = require("screen_saviour.animations.word_shift_left"),
-  word_shift_right = require("screen_saviour.animations.word_shift_right"),
+  scramble = require("screen_saviour.animations.scramble"),
+  random_case = require("screen_saviour.animations.random_case"),
+  move_left = require("screen_saviour.animations.move_left"),
+  move_right = require("screen_saviour.animations.move_right"),
 }
 
 local get_random_animation = function()

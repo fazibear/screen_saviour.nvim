@@ -1,8 +1,8 @@
-word_update = require("screen_saviour.animations.word").update
+local utils = require("screen_saviour.utils")
 
 local M = {
   fps = 30,
-  name = "word_scramble",
+  name = "scramble",
 }
 
 local scramble = function(word)
@@ -16,7 +16,7 @@ local scramble = function(word)
 end
 
 M.update = function(grid)
-  return word_update(grid, scramble)
+  return utils.update_each(utils.is_letter, grid, scramble)
 end
 
 return M
