@@ -26,7 +26,7 @@ local function process_frame(grid, animation_config, win_id)
   end
 end
 
-local function setup_cleaning(win_id, _buffers)
+local function setup_cleaning(win_id, _)
   vim.api.nvim_create_autocmd("WinClosed", {
     group = vim.api.nvim_create_augroup("CellularAutomoton", { clear = true }),
     pattern = tostring(win_id),
@@ -36,19 +36,15 @@ end
 
 M.start = function(animation_name)
   if animation_in_progress then
-    vim.print("Animation is already in progress")
-    M.clean()
-    return 
+    return
   end
-  
+
   animation_in_progress = true
-  
+
   local animation = animation.get_by_name(animation_name)
   local host_win_id = vim.api.nvim_get_current_win()
   local host_bufnr = vim.api.nvim_get_current_buf()
   local grid = require("screen_saviour.load").load_base_grid(host_win_id, host_bufnr)
-  
-  vim.print("Starting animation: " .. animation.name)
 
   if animation.init ~= nil then
     animation.init(grid)
@@ -61,11 +57,11 @@ end
 M.init = function()
   vim.api.nvim_create_autocmd("User", {
     pattern = "Idle",
-    callback = M.start
+    callback = M.start,
   })
   vim.api.nvim_create_autocmd("User", {
     pattern = "KeyPressed",
-    callback = M.clean
+    callback = M.clean,
   })
 end
 
