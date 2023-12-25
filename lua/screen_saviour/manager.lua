@@ -36,16 +36,20 @@ end
 
 M.start = function(animation_name)
   if animation_in_progress then
+    vim.print("Animation is already in progress")
     M.clean()
     return 
   end
- 
+  
   animation_in_progress = true
   
   local animation = animation.get_by_name(animation_name)
   local host_win_id = vim.api.nvim_get_current_win()
   local host_bufnr = vim.api.nvim_get_current_buf()
   local grid = require("screen_saviour.load").load_base_grid(host_win_id, host_bufnr)
+  
+  vim.print("Starting animation: " .. animation.name)
+
   if animation.init ~= nil then
     animation.init(grid)
   end

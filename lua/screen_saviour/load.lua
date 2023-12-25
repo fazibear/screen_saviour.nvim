@@ -3,7 +3,7 @@ local M = {}
 local get_dominant_hl_group = function(buffer, i, j)
   local ok, captures = pcall(vim.treesitter.get_captures_at_pos, buffer, i - 1, j - 1)
   if not ok then
-    return "@text"
+    return "Normal"
   end
   for c = #captures, 1, -1 do
     if captures[c].capture ~= "spell" and captures[c].capture ~= "@spell" then

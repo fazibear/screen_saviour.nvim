@@ -1,8 +1,8 @@
 local utils = require("screen_saviour.utils")
 
 local M = {
-  fps = 30,
   name = "scramble",
+  fps = 30,
 }
 
 local scramble = function(word)

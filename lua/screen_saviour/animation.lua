@@ -7,6 +7,7 @@ M.all = {
   random_case = require("screen_saviour.animations.random_case"),
   move_left = require("screen_saviour.animations.move_left"),
   move_right = require("screen_saviour.animations.move_right"),
+  matrix = require("screen_saviour.animations.matrix"),
 }
 
 local get_random_animation = function()
@@ -19,8 +20,6 @@ end
 
 local apply_default_options = function(config)
   local default = {
-    name = "",
-    update = function() end,
     init = function() end,
     fps = 50,
   }
@@ -44,7 +43,7 @@ M.register = function(config)
 end
 
 M.get_by_name = function(name)
-  return animation_name and M.all[animation_name] or get_random_animation()
+  return name and M.all[name] or get_random_animation()
 end
 
 return M

@@ -1,8 +1,8 @@
 local utils = require("screen_saviour.utils")
 
 local M = {
-  fps = 30,
   name = "move_left",
+  fps = 30,
 }
 
 local shift_left = function(line)

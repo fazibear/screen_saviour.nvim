@@ -1,14 +1,14 @@
 local utils = require("screen_saviour.utils")
 
 local M = {
-  fps = 30,
   name = "move_right",
+  fps = 30,
 }
 
 local shift_right = function(line)
   local chars = {}
   table.insert(chars, line[#line])
-  for i = 1, #line-1 do
+  for i = 1, #line - 1 do
     table.insert(chars, line[i])
   end
   return chars

@@ -27,24 +27,23 @@ local get_col_count = function()
   return 0
 end
 
-local window_valid = function()
-  return window_id and vim.api.nvim_win_is_valid(window_id)
-end
-
 M.open_window = function(host_window)
   buffers = {
     vim.api.nvim_create_buf(false, true),
     vim.api.nvim_create_buf(false, true),
   }
-  local buffnr = get_buffer()
-  window_id = vim.api.nvim_open_win(buffnr, true, {
+
+  local win_opts = {
     relative = "editor",
     width = vim.api.nvim_win_get_width(host_window),
     height = vim.api.nvim_win_get_height(host_window),
     border = "none",
     row = get_row_count(),
     col = get_col_count(),
-  })
+  }
+
+  local buffnr = get_buffer()
+  window_id = vim.api.nvim_open_win(buffnr, true, win_opts)
   vim.api.nvim_win_set_option(window_id, "winhl", "Normal:ScreenSaviourNormal")
   vim.api.nvim_win_set_option(window_id, "list", false)
 
@@ -53,9 +52,10 @@ end
 
 M.render_frame = function(grid)
   -- quit if animation already interrupted
-  if not window_valid(window_id) then
+  if not window_id then
     return
   end
+
   local buffnr = get_buffer()
   -- update data
   local lines = {}
@@ -96,7 +96,7 @@ M.init = function()
   vim.api.nvim_create_autocmd("User", {
     pattern = "KeyPressed",
     callback = function()
-      if window_valid(window_id) then
+      if window_id and vim.api.nvim_win_is_valid(window_id) then
         vim.api.nvim_win_close(window_id, true)
       end
     end,

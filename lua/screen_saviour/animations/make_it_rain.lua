@@ -1,4 +1,5 @@
 local M = {
+  name = "make_it_rain",
   fps = 50,
   side_noise = true,
   disperse_rate = 3,

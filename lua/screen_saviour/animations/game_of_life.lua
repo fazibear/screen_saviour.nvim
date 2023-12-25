@@ -1,4 +1,5 @@
 local M = {
+  name = "game_of_life",
   fps = 10,
   overpopultion_thr = 4,
   underpopulation_thr = 1,

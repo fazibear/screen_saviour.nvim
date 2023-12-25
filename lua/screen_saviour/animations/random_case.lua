@@ -1,8 +1,8 @@
 local utils = require("screen_saviour.utils")
 
 local M = {
-  fps = 10,
   name = "random_case",
+  fps = 10,
 }
 
 local change_char_case = function(char)
