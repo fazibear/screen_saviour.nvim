@@ -2,7 +2,7 @@ local M = {}
 
 M.opts = {
   after = 30,
-  exclude_filetypes = {'nofile'},
+  exclude_filetypes = { "nofile" },
   exclude_buftypes = {},
 }
 

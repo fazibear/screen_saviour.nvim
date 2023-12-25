@@ -55,12 +55,6 @@ local create_line = function(line_data)
   return string.gsub(characters, "  ", "")
 end
 
-local update_line = function(c)
-  if lines[c] then
-    lines[c]:update()
-  end
-end
-
 local M = {
   name = "matrix",
   fps = 15,
@@ -76,6 +70,13 @@ M.init = function(grid)
     if #line > height / 2 then
       table.insert(valid_lines, line)
     end
+  end
+
+  if #valid_lines == 0 then
+    table.insert(valid_lines, "You are not working hard enough !!!")
+    table.insert(valid_lines, "Don't you have anything better to do ???")
+    table.insert(valid_lines, "Are you falling asleep ???")
+    table.insert(valid_lines, "Wake up and do something !!!")
   end
 
   for l = 1, width do
@@ -95,7 +96,7 @@ M.update = function(grid)
     end
   end
   for c = 1, width do
-    update_line(c)
+    lines[c]:update()
   end
   return grid
 end

@@ -33,4 +33,3 @@ M.update = function(grid)
 end
 
 return M
-

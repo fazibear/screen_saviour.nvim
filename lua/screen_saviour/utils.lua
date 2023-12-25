@@ -38,7 +38,7 @@ M.is_not_space = function(grid, i, j)
 end
 
 M.whole_line = function(grid, i, j)
-  return not (M.is_space(grid, i, j) and (M.is_space(grid, i, j-1) or M.is_space(grid, i, j+1)))
+  return not (M.is_space(grid, i, j) and (M.is_space(grid, i, j - 1) or M.is_space(grid, i, j + 1)))
 end
 --
 -- M.is_line = function(char, next_char, current_char_index, max_char_index)
