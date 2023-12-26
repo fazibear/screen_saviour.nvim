@@ -15,7 +15,7 @@ local shift_right = function(line)
 end
 
 M.update = function(grid)
-  return utils.update_each(utils.is_not_space, grid, shift_right)
+  return utils.update_each(utils.whole_line, grid, shift_right)
 end
 
 return M
