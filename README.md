@@ -9,8 +9,21 @@ Screen saver based on cellular automata
 - [ ] more animations!
 
 ## Examples
-- [scrable](https://asciinema.org/a/628917)
-- [matrix](https://asciinema.org/a/628916)
+
+<details>
+<summary>scramble</summary>
+[![asciicast](https://asciinema.org/a/628917.svg)](https://asciinema.org/a/628917)
+</details>
+
+<details>
+<summary>matrix</summary>
+[![asciicast](https://asciinema.org/a/628916.svg)](https://asciinema.org/a/628916)
+</details>
+
+<details>
+<summary>random_case</summary>
+[![asciicast](https://asciinema.org/a/628918.svg)](https://asciinema.org/a/628918)
+</details>
 
 ## What is cellular automata
 From the [Wiki](https://en.wikipedia.org/wiki/Cellular_automaton):
