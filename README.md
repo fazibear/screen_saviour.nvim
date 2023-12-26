@@ -12,14 +12,12 @@ Screen saver based on cellular automata
 
 <details>
 <summary>scramble</summary>
-<script async id="asciicast-628917" src="https://asciinema.org/a/628917.js"></script>
+<a href="https://asciinema.org/a/628917" target="_blank"><img src="https://asciinema.org/a/628917.svg" /></a>
 </details>
-
 <details>
 <summary>matrix</summary>
-<script async id="asciicast-628916" src="https://asciinema.org/a/628916.js"></script>
+<a href="https://asciinema.org/a/628916" target="_blank"><img src="https://asciinema.org/a/628916.svg" /></a>
 </details>
-
 <details>
 <summary>random_case</summary>
 <a href="https://asciinema.org/a/628918" target="_blank"><img src="https://asciinema.org/a/628918.svg" /></a>
