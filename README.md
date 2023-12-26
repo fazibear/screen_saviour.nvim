@@ -9,8 +9,8 @@ Screen saver based on cellular automata
 - [ ] more animations!
 
 ## Examples
-- (https://asciinema.org/a/628917)[scramble]
-- (https://asciinema.org/a/628916)[matrix]
+- [scrable](https://asciinema.org/a/628917)
+- [matrix](https://asciinema.org/a/628916)
 
 ## What is cellular automata
 From the [Wiki](https://en.wikipedia.org/wiki/Cellular_automaton):
