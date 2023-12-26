@@ -10,7 +10,7 @@ M.all = {
   matrix = require("screen_saviour.animations.matrix"),
 }
 
-local get_random_animation = function()
+local get_random = function()
   local keyset = {}
   for k in pairs(M.all) do
     table.insert(keyset, k)
@@ -43,7 +43,7 @@ M.register = function(config)
 end
 
 M.get_by_name = function(name)
-  return name and M.all[name] or get_random_animation()
+  return name and M.all[name] or get_random()
 end
 
 return M

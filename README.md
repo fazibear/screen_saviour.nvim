@@ -1,6 +1,6 @@
 # screen_saviour.nvim
 
-Screen saver based on cellular automata
+Screen saver based on data from current buffer.
 
 ## Wip (TODO)
 - [ ] configuration
@@ -55,13 +55,6 @@ Screen saver based on cellular automata
     </a>
 </details>
 
-## What is cellular automata
-From the [Wiki](https://en.wikipedia.org/wiki/Cellular_automaton):
-
-> A cellular automaton is a model used in computer science and mathematics. The idea is to model a dynamic system by using a number of cells. 
-> Each cell has one of several possible states. With each "turn" or iteration the state of the current cell is determined by two things: 
-> its current state, and the states of the neighbouring cells.
-
 ## Requirements
 - neovim >= 0.8
 - nvim-treesitter plugin
@@ -72,7 +65,7 @@ use 'fazibear/screen_saviour.nvim'
 ```
 
 ## Usage
-You can trigger it using simple command to run a random registered animation:
+You can start screen saver with simple command:
 ``` 
 :ScreenSaviour
 ```
@@ -116,7 +109,7 @@ config.update = function (grid)
     return true
 end
 
-require("screen_saviour").register_animation(config)
+require("screen_saviour.animation").register(config)
 ```
 
 ## Inspiration and references
