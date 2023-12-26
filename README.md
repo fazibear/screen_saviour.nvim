@@ -2,9 +2,15 @@
 
 Screen saver based on cellular automata
 
-WIP!
+## Wip (TODO)
+- [ ] configuration
+- [ ] cleanups
+- [ ] readme.md
+- [ ] more animations!
 
-https://user-images.githubusercontent.com/37074839/204104990-6ebd7767-92e9-43b9-878a-3493a08a3308.mov
+## Examples
+- (https://asciinema.org/a/628917)[scramble]
+- (https://asciinema.org/a/628916)[matrix]
 
 ## What is cellular automata
 From the [Wiki](https://en.wikipedia.org/wiki/Cellular_automaton):
@@ -69,9 +75,6 @@ end
 
 require("screen_saviour").register_animation(config)
 ```
-Result:
-
-https://user-images.githubusercontent.com/37074839/204161376-3b10aadd-90e1-4059-b701-ce318085622c.mov
 
 ## Inspiration and references
 - Basen on https://github.com/Eandrju/cellular-automaton.nvim
