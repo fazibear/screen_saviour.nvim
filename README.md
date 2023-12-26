@@ -22,7 +22,7 @@ Screen saver based on cellular automata
 
 <details>
 <summary>random_case</summary>
-<script async id="asciicast-628918" src="https://asciinema.org/a/628918.js"></script>
+<a href="https://asciinema.org/a/628918" target="_blank"><img src="https://asciinema.org/a/628918.svg" /></a>
 </details>
 
 ## What is cellular automata
