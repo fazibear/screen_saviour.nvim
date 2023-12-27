@@ -15,7 +15,7 @@ local shift_left = function(line)
 end
 
 M.update = function(grid)
-  return utils.update_each(utils.whole_line, grid, shift_left)
+  return utils.update_each(utils.is_not_empty, grid, shift_left)
 end
 
 return M
