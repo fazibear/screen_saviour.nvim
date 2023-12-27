@@ -1,3 +1,5 @@
+local utils = require("screen_saviour.utils")
+
 local M = {
   name = "make_it_rain",
   fps = 50,
@@ -8,7 +10,7 @@ local M = {
 local frame
 
 local cell_empty = function(grid, x, y)
-  if x > 0 and x <= #grid and y > 0 and y <= #grid[x] and grid[x][y].char == " " then
+  if x > 0 and x <= #grid and y > 0 and y <= #grid[x] and (grid[x][y].char == " " or grid[x][y].char == utils.nbsp) then
     return true
   end
   return false

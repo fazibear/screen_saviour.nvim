@@ -1,7 +1,7 @@
 local M = {}
 
 M.opts = {
-  after = 30,
+  after = 1 * 60,
   exclude_filetypes = { "nofile" },
   exclude_buftypes = {},
   random = {},
