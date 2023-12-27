@@ -52,7 +52,12 @@ local create_line = function(line_data)
   for i = 1, #line_data do
     characters = characters .. line_data[i].char
   end
-  return string.gsub(characters, "  ", "")
+
+  characters = string.gsub(characters, "^%s+", "")
+  characters = string.gsub(characters, "%s+$", "")
+  characters = string.gsub(characters, " ", "") -- <- &nbsp;
+
+  return characters
 end
 
 local M = {
