@@ -6,7 +6,11 @@ Screen saver based on data from current buffer.
 - [ ] configuration
 - [ ] cleanups
 - [ ] readme.md
+- [X] include virtual text
+- [ ] include virtual lines
+- [ ] include line nums
 - [ ] more animations!
+
 
 ## Examples
 

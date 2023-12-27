@@ -45,6 +45,40 @@ M.load_base_grid = function(window, buffer)
       end
     end
   end
+
+  -- update with virtual text
+  local virtual_text = vim.api.nvim_buf_get_extmarks(
+    buffer,
+    -1,
+    { vertical_range.start, horizontal_range.start },
+    { vertical_range.end_, horizontal_range.end_ },
+    { type = "virt_text", details = true }
+  )
+
+  for _, virt_text_data in ipairs(virtual_text) do
+    local virt_row = virt_text_data[2] - vertical_range.start + 1
+    local virt_col = virt_text_data[3]
+    local virt_text = " " .. virt_text_data[4].virt_text[1][1]
+    local virt_hl_group = virt_text_data[4].virt_text[1][2]
+    for j = 1, string.len(virt_text) do
+      local idx = string.len(data[virt_row]) + virt_col + j
+      if idx <= window_width then
+        grid[virt_row][idx] = {
+          char = string.sub(virt_text, j, j),
+          hl_group = virt_hl_group,
+        }
+      end
+    end
+  end
+
+  -- local virtual_lines = vim.api.nvim_buf_get_extmarks(
+  --   buffer,
+  --   -1,
+  --   { vertical_range.start, horizontal_range.start },
+  --   { vertical_range.end_, horizontal_range.end_ },
+  --   { type = "virt_lines", details = true }
+  -- )
+
   return grid
 end
 
