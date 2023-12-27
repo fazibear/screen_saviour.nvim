@@ -1,3 +1,4 @@
+local utils = require("screen_saviour.utils")
 local lines = {}
 local width = 0
 local height = 0
@@ -55,7 +56,7 @@ local create_line = function(line_data)
 
   characters = string.gsub(characters, "^%s+", "")
   characters = string.gsub(characters, "%s+$", "")
-  characters = string.gsub(characters, " ", "") -- <- &nbsp;
+  characters = string.gsub(characters, utils.nbsp, "") 
 
   return characters
 end

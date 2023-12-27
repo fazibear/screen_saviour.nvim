@@ -1,3 +1,5 @@
+local utils = require("screen_saviour.utils")
+
 local M = {}
 
 local get_dominant_hl_group = function(buffer, i, j)
@@ -30,7 +32,7 @@ M.load_base_grid = function(window, buffer)
   for i = 1, vim.api.nvim_win_get_height(window) do
     grid[i] = {}
     for j = 1, window_width do
-      grid[i][j] = { char = " ", hl_group = "" } -- <- &nbsp;
+      grid[i][j] = { char = utils.nbsp, hl_group = "" }
     end
   end
   local data = vim.api.nvim_buf_get_lines(buffer, vertical_range.start, vertical_range.end_, true)

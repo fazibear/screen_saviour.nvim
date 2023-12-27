@@ -1,5 +1,7 @@
 M = {}
 
+M.nbsp = " " -- <- &nbsp;
+
 M.get_char = function(grid, i, j)
   local c = grid[i][j]
   if c then
@@ -38,7 +40,7 @@ M.is_not_space = function(grid, i, j)
 end
 
 M.is_empty = function(grid, i, j)
-  return M.get_char(grid, i, j) == " " -- <- &nbsp;
+  return M.get_char(grid, i, j) == M.nbsp
 end
 
 M.is_not_empty = function(grid, i, j)
