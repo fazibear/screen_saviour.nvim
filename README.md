@@ -9,6 +9,7 @@ Screen saver based on data from current buffer.
 - [X] include virtual text
 - [ ] include virtual lines
 - [ ] include line nums
+- [X] fix utf8 chars
 - [ ] more animations!
 
 
