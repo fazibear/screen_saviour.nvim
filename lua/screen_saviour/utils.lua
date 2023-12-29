@@ -2,6 +2,28 @@ M = {}
 
 M.nbsp = " " -- <- &nbsp;
 
+M.string_len = function(str)
+  return vim.fn.strdisplaywidth(str)
+end
+
+M.string_sub = function(str, i, j)
+  local length = vim.str_utfindex(str)
+  if i < 0 then
+    i = i + length + 1
+  end
+  if j and j < 0 then
+    j = j + length + 1
+  end
+  local u = (i > 0) and i or 1
+  local v = (j and j <= length) and j or length
+  if u > v then
+    return ""
+  end
+  local s = vim.str_byteindex(str, u - 1)
+  local e = vim.str_byteindex(str, v)
+  return str:sub(s + 1, e)
+end
+
 M.get_char = function(grid, i, j)
   local c = grid[i][j]
   if c then
@@ -32,7 +54,10 @@ M.is_alphanum = function(grid, i, j)
 end
 
 M.is_space = function(grid, i, j)
-  return M.get_char(grid, i, j) == " " or M.get_char(grid, i, j) == "\t" or M.get_char(grid, i, j) == "\n" or M.get_char(grid, i, j) == "\r"
+  return M.get_char(grid, i, j) == " "
+      or M.get_char(grid, i, j) == "\t"
+      or M.get_char(grid, i, j) == "\n"
+      or M.get_char(grid, i, j) == "\r"
 end
 
 M.is_not_space = function(grid, i, j)

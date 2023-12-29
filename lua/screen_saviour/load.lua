@@ -41,8 +41,8 @@ M.load_base_grid = function(window, buffer)
   for i, line in ipairs(data) do
     for j = 1, window_width do
       local idx = horizontal_range.start + j
-      if idx <= string.len(line) then
-        grid[i][j].char = string.sub(line, idx, idx)
+      if idx <= utils.string_len(line) then
+        grid[i][j].char = utils.string_sub(line, idx, idx)
         grid[i][j].hl_group = get_dominant_hl_group(buffer, vertical_range.start + i, idx)
       end
     end
@@ -53,7 +53,7 @@ M.load_base_grid = function(window, buffer)
     buffer,
     -1,
     { vertical_range.start, horizontal_range.start },
-    { vertical_range.end_, horizontal_range.end_ },
+    { vertical_range.end_ - 1, horizontal_range.end_ - 1 },
     { type = "virt_text", details = true }
   )
 
@@ -62,11 +62,11 @@ M.load_base_grid = function(window, buffer)
     local virt_col = virt_text_data[3]
     local virt_text = " " .. virt_text_data[4].virt_text[1][1]
     local virt_hl_group = virt_text_data[4].virt_text[1][2]
-    for j = 1, string.len(virt_text) do
-      local idx = string.len(data[virt_row]) + virt_col + j
+    for j = 1, utils.string_len(virt_text) do
+      local idx = utils.string_len(data[virt_row]) + virt_col + j
       if idx <= window_width then
         grid[virt_row][idx] = {
-          char = string.sub(virt_text, j, j),
+          char = utils.string_sub(virt_text, j, j),
           hl_group = virt_hl_group,
         }
       end
