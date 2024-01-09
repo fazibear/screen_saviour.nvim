@@ -15,6 +15,32 @@ local get_dominant_hl_group = function(buffer, i, j)
   return "@text"
 end
 
+local string_len = function(str)
+  return vim.fn.strdisplaywidth(str)
+end
+
+local string_sub = function(str, i, j)
+  local length = vim.str_utfindex(str)
+  if i < 0 then
+    i = i + length + 1
+  end
+  if j and j < 0 then
+    j = j + length + 1
+  end
+  local u = (i > 0) and i or 1
+  local v = (j and j <= length) and j or length
+  if u > v then
+    return ""
+  end
+  local s = vim.str_byteindex(str, u - 1)
+  local e = vim.str_byteindex(str, v)
+  return str:sub(s + 1, e)
+end
+
+local preprocess_line = function(line)
+  return line:gsub("\t", string.rep(utils.nbsp, vim.bo.tabstop))
+end
+
 M.load_base_grid = function(window, buffer)
   local window_info = vim.fn.getwininfo(window)[1]
   local window_width = window_info.width - window_info.textoff
@@ -39,10 +65,11 @@ M.load_base_grid = function(window, buffer)
 
   -- update with buffer data
   for i, line in ipairs(data) do
+    local line = preprocess_line(line)
     for j = 1, window_width do
       local idx = horizontal_range.start + j
-      if idx <= utils.string_len(line) then
-        grid[i][j].char = utils.string_sub(line, idx, idx)
+      if idx <= string_len(line) then
+        grid[i][j].char = string_sub(line, idx, idx)
         grid[i][j].hl_group = get_dominant_hl_group(buffer, vertical_range.start + i, idx)
       end
     end
@@ -62,11 +89,11 @@ M.load_base_grid = function(window, buffer)
     local virt_col = virt_text_data[3]
     local virt_text = " " .. virt_text_data[4].virt_text[1][1]
     local virt_hl_group = virt_text_data[4].virt_text[1][2]
-    for j = 1, utils.string_len(virt_text) do
-      local idx = utils.string_len(data[virt_row]) + virt_col + j
+    for j = 1, string_len(virt_text) do
+      local idx = string_len(data[virt_row]) + virt_col + j
       if idx <= window_width then
         grid[virt_row][idx] = {
-          char = utils.string_sub(virt_text, j, j),
+          char = string_sub(virt_text, j, j),
           hl_group = virt_hl_group,
         }
       end
