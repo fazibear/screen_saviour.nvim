@@ -38,7 +38,7 @@ local string_sub = function(str, i, j)
 end
 
 local preprocess_line = function(line)
-  return line:gsub("\t", string.rep(utils.nbsp, vim.bo.tabstop))
+  return line:gsub("\t", string.rep(" ", vim.bo.tabstop))
 end
 
 M.load_base_grid = function(window, buffer)
