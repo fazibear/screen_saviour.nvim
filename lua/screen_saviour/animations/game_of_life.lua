@@ -1,3 +1,5 @@
+local utils = require("screen_saviour.utils")
+
 local M = {
   name = "game_of_life",
   fps = 10,
@@ -7,7 +9,7 @@ local M = {
 }
 
 local function is_cell_alive(grid, x, y)
-  if x > 0 and x <= #grid and y > 0 and y <= #grid[x] and grid[x][y].char ~= " " then
+  if x > 0 and x <= #grid and y > 0 and y <= #grid[x] and grid[x][y].char ~= " " and grid[x][y].char ~= utils.nbsp then
     return true
   end
   return false
@@ -40,7 +42,7 @@ local function count_neighbours(grid, x, y)
 end
 
 local function kill_cell(grid, x, y)
-  grid[x][y] = { char = " " }
+  grid[x][y] = { char = utils.nbsp }
 end
 
 local function respawn_cell(grid, prev_grid, x, y)
