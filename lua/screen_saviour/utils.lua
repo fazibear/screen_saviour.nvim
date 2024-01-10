@@ -31,15 +31,16 @@ M.is_alphanum = function(grid, i, j)
   return M.is_letter(grid, i, j) or M.is_number(grid, i, j)
 end
 
-M.is_space = function(grid, i, j)
+M.is_whitespace = function(grid, i, j)
   return M.get_char(grid, i, j) == " "
       or M.get_char(grid, i, j) == "\t"
       or M.get_char(grid, i, j) == "\n"
       or M.get_char(grid, i, j) == "\r"
+      or M.get_char(grid, i, j) == M.nbsp
 end
 
-M.is_not_space = function(grid, i, j)
-  return not M.is_space(grid, i, j)
+M.is_not_whitespace = function(grid, i, j)
+  return not M.is_whitespace(grid, i, j)
 end
 
 M.is_empty = function(grid, i, j)
