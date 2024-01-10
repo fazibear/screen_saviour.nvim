@@ -1,6 +1,6 @@
 local M = {}
 
-local common = require("screen_saviour.common")
+local utils = require("screen_saviour.utils")
 local ui = require("screen_saviour.ui")
 local animation = require("screen_saviour.animation")
 
@@ -12,12 +12,12 @@ local function process_frame(grid, animation_config, win_id)
   end
   -- proccess frame
   ui.render_frame(grid)
-  local render_at = common.time()
+  local render_at = utils.time()
   local state_changed = animation_config.update(grid)
 
   -- schedule next frame
   local fps = animation_config.fps or 50
-  local time_since_render = common.time() - render_at
+  local time_since_render = utils.time() - render_at
   local timeout = math.max(0, 1000 / fps - time_since_render)
   if state_changed then
     vim.defer_fn(function()

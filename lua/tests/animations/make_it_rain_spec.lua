@@ -1,9 +1,9 @@
 local assert = require("luassert")
 local m = require("screen_saviour.animations.make_it_rain")
-local c = require("tests.animations.common")
+local u = require("tests.animations.utils")
 
 local get_grid = function(pattern)
-  local grid = c.get_grid(pattern)
+  local grid = u.get_grid(pattern)
   m.init(grid)
   m.side_noise = false
   m.disperse_rate = 2
@@ -17,7 +17,7 @@ describe("make_it_rain", function()
       "   ",
     })
     m.update(grid)
-    c.assert_grid_same(grid, {
+    u.assert_grid_same(grid, {
       "   ",
       " x ",
     })
@@ -81,7 +81,7 @@ describe("make_it_rain", function()
         local grid = get_grid(case.initial)
         grid[1][2].disperse_direction = 1
         m.update(grid)
-        c.assert_grid_same(grid, case.expected)
+        u.assert_grid_same(grid, case.expected)
       end
     end)
 
@@ -154,7 +154,7 @@ describe("make_it_rain", function()
         local grid = get_grid(case.initial)
         grid[1][4].disperse_direction = -1
         m.update(grid)
-        c.assert_grid_same(grid, case.expected, "Fked up case: " .. i)
+        u.assert_grid_same(grid, case.expected, "Fked up case: " .. i)
       end
     end)
 
@@ -175,7 +175,7 @@ describe("make_it_rain", function()
       " # ",
     })
     m.update(grid)
-    c.assert_grid_different(grid, {
+    u.assert_grid_different(grid, {
       " x ",
       " # ",
     })
