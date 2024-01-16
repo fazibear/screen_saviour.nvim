@@ -34,7 +34,7 @@ local Line = {
   end,
   update = function(self)
     self.position = self.position + 1
-    if self.position > #self.letters + self.offset then
+    if self.position > height or self.position > #self.letters + self.offset then
       self.position = 1
       self.offset = math.random(height / 4) - 1
     end
