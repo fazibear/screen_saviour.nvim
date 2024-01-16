@@ -1,13 +1,14 @@
 local M = {}
 
 M.all = {
-  make_it_rain = require("screen_saviour.animations.make_it_rain"),
+  water = require("screen_saviour.animations.water"),
   game_of_life = require("screen_saviour.animations.game_of_life"),
   scramble = require("screen_saviour.animations.scramble"),
   random_case = require("screen_saviour.animations.random_case"),
   move_left = require("screen_saviour.animations.move_left"),
   move_right = require("screen_saviour.animations.move_right"),
   matrix = require("screen_saviour.animations.matrix"),
+  rain = require("screen_saviour.animations.rain"),
 }
 
 local get_random = function()

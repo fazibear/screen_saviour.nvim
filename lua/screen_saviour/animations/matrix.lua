@@ -36,7 +36,7 @@ local Line = {
     self.position = self.position + 1
     if self.position > #self.letters + self.offset then
       self.position = 1
-      self.offset = math.random(height) / 2
+      self.offset = math.random(height / 4) - 1
     end
   end,
 }
