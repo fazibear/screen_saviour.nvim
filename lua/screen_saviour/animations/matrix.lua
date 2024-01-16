@@ -36,7 +36,7 @@ local Line = {
     self.position = self.position + 1
     if self.position > #self.letters + self.offset then
       self.position = 1
-      self.offset = math.random(height) - 1
+      self.offset = math.random(height) / 2
     end
   end,
 }
@@ -56,7 +56,7 @@ local create_line = function(line_data)
 
   characters = string.gsub(characters, "^%s+", "")
   characters = string.gsub(characters, "%s+$", "")
-  characters = string.gsub(characters, utils.nbsp, "") 
+  characters = string.gsub(characters, utils.nbsp, "")
 
   return characters
 end
