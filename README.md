@@ -12,7 +12,6 @@ Screen saver based on data from current buffer.
 - [X] fix utf8 chars
 - [ ] more animations!
 
-
 ## Examples
 
 <details>
@@ -53,7 +52,7 @@ Screen saver based on data from current buffer.
 
 <details>
     <summary>
-        make it rain
+        water
     </summary>
     <a href="https://asciinema.org/a/628984" target="_blank">
         <img src="https://asciinema.org/a/628984.svg" />
@@ -66,12 +65,12 @@ Screen saver based on data from current buffer.
 
 ## Installation
 ```
-use 'fazibear/screen_saviour.nvim' 
+use 'fazibear/screen_saviour.nvim'
 ```
 
 ## Usage
 You can start screen saver with simple command:
-``` 
+```
 :ScreenSaviour
 ```
 or specifying the animation name like:
@@ -87,7 +86,7 @@ or
 - folding and wrapping is not supported ATM
 
 ## Implementing your own cellular automaton logic
-Using a simple interface you can implement your own cellular automaton animation. You need to provide a configuration table with an `update` function, which takes a 2D grid of cells and modifies it in place. Each cell by default consist of two fields: 
+Using a simple interface you can implement your own cellular automaton animation. You need to provide a configuration table with an `update` function, which takes a 2D grid of cells and modifies it in place. Each cell by default consist of two fields:
 - `char` - single string character
 - `hl_group` - treesitter's highlight group
 
@@ -119,6 +118,3 @@ require("screen_saviour.animation").register(config)
 
 ## Inspiration and references
 - Basen on https://github.com/Eandrju/cellular-automaton.nvim
-
-
-
