@@ -41,16 +41,16 @@ M.start = function(animation_name)
 
   animation_in_progress = true
 
-  local animation = animation.get_by_name(animation_name)
+  local animation_data = animation.get_by_name(animation_name)
   local host_win_id = vim.api.nvim_get_current_win()
   local host_bufnr = vim.api.nvim_get_current_buf()
   local grid = require("screen_saviour.load").load_base_grid(host_win_id, host_bufnr)
 
-  if animation.init ~= nil then
-    animation.init(grid)
+  if animation_data.init ~= nil then
+    animation_data.init(grid)
   end
   local win_id, buffers = ui.open_window(host_win_id)
-  process_frame(grid, animation, win_id)
+  process_frame(grid, animation_data, win_id)
   setup_cleaning(win_id, buffers)
 end
 
