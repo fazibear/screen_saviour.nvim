@@ -33,10 +33,10 @@ end
 
 M.is_whitespace = function(grid, i, j)
   return M.get_char(grid, i, j) == " "
-      or M.get_char(grid, i, j) == "\t"
-      or M.get_char(grid, i, j) == "\n"
-      or M.get_char(grid, i, j) == "\r"
-      or M.get_char(grid, i, j) == M.nbsp
+    or M.get_char(grid, i, j) == "\t"
+    or M.get_char(grid, i, j) == "\n"
+    or M.get_char(grid, i, j) == "\r"
+    or M.get_char(grid, i, j) == M.nbsp
 end
 
 M.is_not_whitespace = function(grid, i, j)
@@ -82,6 +82,32 @@ end
 
 M.round = function(x)
   return math.floor(x + 0.5)
+end
+
+M.string_len = function(str)
+  return vim.fn.strdisplaywidth(str)
+end
+
+M.string_byte_len = function(str)
+  return string.len(str)
+end
+
+M.string_sub = function(str, i, j)
+  local length = vim.str_utfindex(str)
+  if i < 0 then
+    i = i + length + 1
+  end
+  if j and j < 0 then
+    j = j + length + 1
+  end
+  local u = (i > 0) and i or 1
+  local v = (j and j <= length) and j or length
+  if u > v then
+    return ""
+  end
+  local s = vim.str_byteindex(str, u - 1)
+  local e = vim.str_byteindex(str, v)
+  return str:sub(s + 1, e)
 end
 
 return M

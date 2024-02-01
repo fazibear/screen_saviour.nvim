@@ -71,7 +71,14 @@ M.render_frame = function(grid)
   vim.api.nvim_buf_clear_namespace(buffnr, namespace, 0, -1)
   for i, row in ipairs(grid) do
     for j, cell in ipairs(row) do
-      vim.api.nvim_buf_add_highlight(buffnr, namespace, cell.hl_group or "", i - 1, j - 1, j)
+      vim.api.nvim_buf_add_highlight(
+        buffnr,
+        namespace,
+        cell.hl_group or "",
+        i - 1,
+        cell.char_start or j - 1,
+        cell.char_end or j
+      )
     end
   end
   -- swap buffers

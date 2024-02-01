@@ -11,7 +11,7 @@ local Line = {
     if l < self.position and self.offset < l then
       return self.letters[l - self.offset]
     else
-      return { char = ' ', hl_group = '' }
+      return { char = " ", hl_group = "" }
     end
   end,
   update = function(self)
@@ -31,7 +31,7 @@ function Line:new(o)
 end
 
 local is_whitespace = function(c)
-  return c == ' ' or c == utils.nbsp
+  return c == " " or c == utils.nbsp
 end
 
 local create_line = function(line_data)
@@ -94,7 +94,7 @@ M.update = function(grid)
     grid[r] = {}
     for c = 1, width do
       if c % 2 == 0 then
-        grid[r][c] = { char = ' ', hl_group = '' }
+        grid[r][c] = { char = " ", hl_group = "" }
       else
         grid[r][c] = lines[c]:get_cell(r)
       end

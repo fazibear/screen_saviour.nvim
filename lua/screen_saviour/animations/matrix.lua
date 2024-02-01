@@ -14,14 +14,14 @@ local Line = {
   get_cell = function(self, l)
     if l < self.position and self.offset < l then
       if l == self.position - 1 then
-        local random_char = math.random(1, #self.letters)
+        local random_char = math.random(1, utils.string_len(self.letters) or 1)
         return {
-          char = self.letters:sub(random_char, random_char),
+          char = utils.string_sub(self.letters, random_char, random_char),
           hl_group = "MatrixEnd",
         }
       else
         return {
-          char = self.letters:sub(l - self.offset, l - self.offset),
+          char = utils.string_sub(self.letters, l - self.offset, l - self.offset),
           hl_group = "Matrix",
         }
       end
@@ -34,7 +34,7 @@ local Line = {
   end,
   update = function(self)
     self.position = self.position + 1
-    if self.position > height or self.position > #self.letters + self.offset then
+    if self.position > height or self.position > utils.string_len(self.letters) + self.offset then
       self.position = 1
       self.offset = math.random(height / 4) - 1
     end
@@ -95,12 +95,20 @@ M.init = function(grid)
 end
 
 M.update = function(grid)
+  local char_position
   for r = 1, height do
+    char_position = 0
     grid[r] = {}
     for c = 1, width do
-      grid[r][c] = lines[c]:get_cell(r)
+      local new_cell = lines[c]:get_cell(r)
+      new_cell.char_start = char_position
+      local char_length = utils.string_byte_len(new_cell.char)
+      new_cell.char_end = char_position + char_length
+      grid[r][c] = new_cell
+      char_position = char_position + char_length
     end
   end
+
   for c = 1, width do
     lines[c]:update()
   end
