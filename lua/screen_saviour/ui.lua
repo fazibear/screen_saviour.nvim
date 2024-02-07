@@ -3,6 +3,7 @@ local M = {}
 local window_id = nil
 local buffers = nil
 local namespace = vim.api.nvim_create_namespace("screen_saviour")
+local utils = require("screen_saviour.utils")
 
 -- Each frame is rendered in different buffer to avoid flickering
 -- caused by lack of higliths right after setting the buffer data.
@@ -67,18 +68,16 @@ M.render_frame = function(grid)
     table.insert(lines, table.concat(chars, ""))
   end
   vim.api.nvim_buf_set_lines(buffnr, 0, vim.api.nvim_win_get_height(window_id), false, lines)
+
   -- update highlights
   vim.api.nvim_buf_clear_namespace(buffnr, namespace, 0, -1)
+  local j
   for i, row in ipairs(grid) do
-    for j, cell in ipairs(row) do
-      vim.api.nvim_buf_add_highlight(
-        buffnr,
-        namespace,
-        cell.hl_group or "",
-        i - 1,
-        cell.char_start or j - 1,
-        cell.char_end or j
-      )
+    j = 0
+    for _, cell in ipairs(row) do
+      local len = utils.string_byte_len(cell.char)
+      vim.api.nvim_buf_add_highlight(buffnr, namespace, cell.hl_group or "", i - 1, j, j + len)
+      j = j + len
     end
   end
   -- swap buffers

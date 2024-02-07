@@ -28,7 +28,7 @@ end
 
 local function setup_cleaning(win_id, _)
   vim.api.nvim_create_autocmd("WinClosed", {
-    group = vim.api.nvim_create_augroup("CellularAutomoton", { clear = true }),
+    group = vim.api.nvim_create_augroup("ScreenSaviour", { clear = true }),
     pattern = tostring(win_id),
     callback = M.clean,
   })

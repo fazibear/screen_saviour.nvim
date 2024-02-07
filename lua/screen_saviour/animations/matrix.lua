@@ -95,17 +95,11 @@ M.init = function(grid)
 end
 
 M.update = function(grid)
-  local char_position
   for r = 1, height do
-    char_position = 0
     grid[r] = {}
     for c = 1, width do
       local new_cell = lines[c]:get_cell(r)
-      new_cell.char_start = char_position
-      local char_length = utils.string_byte_len(new_cell.char)
-      new_cell.char_end = char_position + char_length
       grid[r][c] = new_cell
-      char_position = char_position + char_length
     end
   end
 
