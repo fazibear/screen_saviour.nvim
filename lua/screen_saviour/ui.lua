@@ -34,6 +34,11 @@ M.open_window = function(host_window)
     vim.api.nvim_create_buf(false, true),
   }
 
+  local host_buf = vim.api.nvim_win_get_buf(host_window)
+  local host_name = vim.api.nvim_buf_get_name(host_buf)
+  vim.api.nvim_buf_set_name(buffers[1], host_name .. " ")
+  vim.api.nvim_buf_set_name(buffers[2], host_name .. "  ")
+
   local win_opts = {
     relative = "editor",
     width = vim.api.nvim_win_get_width(host_window),
